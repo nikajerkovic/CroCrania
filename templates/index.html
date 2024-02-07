@@ -56,7 +56,7 @@
             <form id="standardPredictionForm" action="/predict" method="POST" enctype="multipart/form-data">
                 <div class="form-columns">
                 <div class="form-column">
-                <label class="label_titles_1">Enter the measurements</label>
+                <label class="label_titles_1">Enter the measurements (only <span style="color:  #ffc71a;">yellow</span> fields or <span style="color:   #156ea6;">all</span> of them)</label>
                 </div>
                 </div>
                 <div class="form-columns">
@@ -183,7 +183,7 @@
 
                                     <div style="margin-left: 5%;"><label for="excelFile" class="label">Download template</label>
                                     <div>
-                                    <button id="downloadExcelButton1" class="template-btn" type="button">Template - all</button>
+                                    <button id="downloadExcelButton1" class="template-btn" type="button" >Template - all</button>
                                     <button id="downloadExcelButton2" class ="template3-btn" type="button">Template - 3</button></div></div>
                                     
                                 
@@ -207,10 +207,21 @@
                     <div id="notification_validExcel" class="warning-container" style="display: none;"></div>
                 </div>
 
+                
                 <div class="form-column" style="display: flex; justify-content: flex-start; margin-top: 1%; margin-bottom: 1%;padding-left: 1rem;">
                         <button type="button" class="custom-submit-btn" style = "margin-right: 1.5%;" onclick="predictAndShowResults_Standard()">PREDICT</button>
                         <button type="button" class="custom-submit-btn" onclick="clearForm_standard()">CLEAR</button>
+                
+                        <div id="loadingSpinner" class="spinner-border" role="status"
+                            style="width: 2.5rem; height: 2.5rem; margin-left: 5%; color: #156ea6; display: block;">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+
+                        
+
                 </div>
+
+
 
 
                 <div id="predictionResults" class ="results"> 
@@ -247,7 +258,7 @@
             manual imputation of measurements, uses 23 variables and employs a linear discriminant analysis model that provides a
             classification accuracy of 0.95. The second model reads landmark files, automatically calculates 99 interlandmark
             distances, and, using linear discriminant analysis, provides a classification accuracy of 0.96. For that model, users
-            must mark landmarks in the order defined <button id="downloadPdfLink2" class="link">here</button> or use the <button id="downloadCtfLink" class="link">template</button> available for Stratovan Checkpoint software. To employthe model, a user must select a folder where landmark files are located. The app supports the following landmark file
+            must mark landmarks in the order defined <button id="downloadPdfLink2" class="link">here</button> or use the <button id="downloadCtfLink" class="link">template</button> available for Stratovan Checkpoint software. To employ the model, a user must select a folder where landmark files are located. The app supports the following landmark file
             formats: nts,csv,pts and txt (morphologika files).</p>
 
             <form id="nonStandardPredictionForm" action="/predict_non_standard" method="POST" enctype="multipart/form-data">
@@ -410,7 +421,7 @@
                                         <option value="pts">example.pts</option>
                                         <option value="txt">example.txt</option>
                                     </select>
-                                    <button id="downloadExampleButton" class="downloadButton" type="button">Download</button>
+                                    <button id="downloadExampleButton" class="downloadButton">Download</button>
                                 </div>
                             </div>
                 
@@ -440,6 +451,10 @@
                 <div class="form-column" style="display: flex; justify-content: flex-start; margin-top: 1%; margin-bottom: 1%; padding-left: 1rem;">
                     <button type="button" class="custom-submit-btn" style="margin-right: 1.5%;" onclick="predictAndShowResults_Non_Standard()">PREDICT</button>
                     <button type="button" class="custom-submit-btn" onclick="clearForm_non_standard()">CLEAR</button>
+                    <div class="spinner-border" role="status"
+                        style="width: 2.5rem; height: 2.5rem; margin-left: 5%; color: #156ea6; display: block;">
+                        <span class="sr-only">Loading...</span>
+                    </div>
                 </div>
 
                 <div id="predictionResultsNonStandard" class="results">
@@ -469,7 +484,7 @@
     <script>
 
         
-            function adjustContainerHeights() {
+                  function adjustContainerHeights() {
                 var introContainer = document.getElementById('introContainer');
                 var standardFormContainer = document.getElementById('standardFormContainer');
                 var nonStandardFormContainer = document.getElementById('nonStandardFormContainer');
@@ -492,7 +507,7 @@
                 nonStandardFormContainer.style.height = maxHeight + 'px';
             }
 
-            function toggleForm(formType) {
+    function toggleForm(formType) {
                 var buttons = document.querySelectorAll('.underlined-button');
                 buttons.forEach(button => {
                     button.classList.remove('active');
@@ -521,18 +536,18 @@
             }
 
             // Combined window.onload function
-            window.onload = function () {
+    window.onload = function () {
                 // Set the default form to standard and adjust heights
                 toggleForm('standard');
             };
 
             // Adjust container heights on window resize
-            window.onresize = adjustContainerHeights;
+    window.onresize = adjustContainerHeights;
 
 
 
         // Function to validate numeric input
-            function validateNumericInput(event) {
+    function validateNumericInput(event) {
                     const input = event.target;
                     const key = event.key;
 
@@ -545,7 +560,7 @@
                     }
                 }
 
-            document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function () {
                     // Add event listener to each input field to validate numeric input
                     var inputs = document.querySelectorAll('input[type="number"]');
                     inputs.forEach(function (input) {
@@ -553,7 +568,7 @@
                     });
 
                     // Add event listener to handle Tab key press for focusing on the next input field
-            document.addEventListener('keydown', function (event) {
+    document.addEventListener('keydown', function (event) {
                         if (event.key === 'Tab') {
                             var activeElement = document.activeElement;
                             var inputsArray = Array.from(inputs);
@@ -567,7 +582,7 @@
                 });
 
 
-            function downloadExcel(excelData, filename) {
+    function downloadExcel(excelData, filename) {
                     // Create a blob object with the Excel data
                     var blob = new Blob([excelData], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
 
@@ -585,7 +600,7 @@
                 }
 
             // Function to fetch the content of the template file
-            function fetchTemplateContent(templateName, filename, callback) {
+    function fetchTemplateContent(templateName, filename, callback) {
                 var xhr = new XMLHttpRequest();
                 xhr.open('GET', 'static/templates/' + templateName, true);
                 xhr.responseType = 'blob';
@@ -613,7 +628,7 @@
             }
 
             // Attach the downloadExcel function to the button click event
-            document.getElementById('downloadExcelButton1').addEventListener('click', function () {
+    document.getElementById('downloadExcelButton1').addEventListener('click', function () {
                 var templateName = "template-veliki.xlsx"; // Change this data for the first file
                 var filename = "template-all.xlsx"; // Change this for the first filename
                 console.log("Downloading template:", templateName);
@@ -621,7 +636,7 @@
             });
 
             // Attach the downloadExcel function to the button click event
-            document.getElementById('downloadExcelButton2').addEventListener('click', function () {
+    document.getElementById('downloadExcelButton2').addEventListener('click', function () {
                 var templateName = "template-mali.xlsx"; // Change this data for the second file
                 var filename = "template-3.xlsx"; // Change this for the second filename
                 console.log("Downloading template:", templateName);
@@ -629,7 +644,7 @@
             });
 
 
-            function downloadFile(fileData, filename) {
+    function downloadFile(fileData, filename) {
                     // Create a blob object with the file data
                     var blob = new Blob([fileData], { type: 'text/plain' });
 
@@ -673,7 +688,7 @@
                 }
 
                 // Attach the downloadFile function to the button click event
-                document.getElementById('downloadExampleButton').addEventListener('click', function () {
+    document.getElementById('downloadExampleButton').addEventListener('click', function () {
                     var fileType = document.getElementById('fileType').value;
 
                     console.log('Downloading file with extension:', fileType);
@@ -681,7 +696,7 @@
                 });
 
             // download on link:
-            function fetchLinkContent(fileType, callback) {
+    function fetchLinkContent(fileType, callback) {
                     var xhr = new XMLHttpRequest();
                     xhr.open('GET', 'static/link.' + fileType, true);
                     xhr.responseType = 'blob';
@@ -712,7 +727,7 @@
                 }
 
 
-                function downloadLink(fileData, filename, fileType) {
+    function downloadLink(fileData, filename, fileType) {
                         // Create a blob object with the file data
                         var blob = new Blob([fileData], { type: fileType === 'pdf' ? 'application/pdf' : 'text/plain' });
 
@@ -749,7 +764,7 @@
                 });
 
             // make sure that all input fields are filled
-            function check_empty() {
+    function check_empty() {
                     var folderInput = document.getElementById('folderUpload');
 
                     // Check if a folder is uploaded
@@ -786,7 +801,7 @@
                 }
 
 
-          function check_empty_std() {
+    function check_empty_std() {
                 // Check if an Excel file is uploaded
                 var excelFileInput = document.getElementById('excelFile');
                 if (excelFileInput.files.length) {
@@ -832,19 +847,19 @@
 
         // excel
 
-        function showNotification(message) {
+    function showNotification(message) {
                 var notificationDiv = document.getElementById('notification_validExcel');
                 notificationDiv.innerText = message;
                 notificationDiv.style.display = 'flex'; // Show the notification
             }
 
-        function showNotification_non(message) {
+    function showNotification_non(message) {
                 var notificationDiv = document.getElementById('notification_file_content');
                 notificationDiv.innerText = message;
                 notificationDiv.style.display = 'flex'; // Show the notification
             }
 
-      document.getElementById('folderUpload').addEventListener('change', function () {
+    document.getElementById('folderUpload').addEventListener('change', function () {
             var files = this.files;
             var allowedExtensions = ['.nts', '.pts', '.csv', '.txt']; // Allowed file extensions
             var allFilesValid = true;
@@ -897,6 +912,8 @@
                     var form = document.getElementById('standardPredictionForm');
                     var formData = new FormData(form);
 
+                    document.getElementById('loadingSpinner').style.display = 'block';
+
                     fetch('/predict', {
                         method: 'POST',
                         body: formData
@@ -909,6 +926,7 @@
                         })
                         .then(results => {
                             // Check if there's an error in the response
+                            document.getElementById('loadingSpinner').style.display = 'none';
                             if (results.error) {
                                 // Display the error message
                                 showNotification(results.error);
@@ -971,6 +989,7 @@
                         })
                         .catch(error => console.error('Error:', error));
                         adjustContainerHeights()
+                       document.getElementById('loadingSpinner').style.display = 'none';
                 }
                 adjustContainerHeights()
                 
@@ -985,6 +1004,8 @@
                         var form = document.getElementById('nonStandardPredictionForm');
                         var formData = new FormData(form);
 
+                        document.getElementById('loadingSpinner').style.display = 'block';
+
                         fetch('/predict_non_standard', {
                             method: 'POST',
                             body: formData
@@ -996,7 +1017,7 @@
                                 return response.json();
                             })
                             .then(results => {
-
+                                document.getElementById('loadingSpinner').style.display = 'block';
                                 if (results.error) {
                                     // Display the error message
                                     showNotification_non(results.error);
@@ -1050,11 +1071,13 @@
                                     } else {
                                         console.error('Error: Unexpected response format');
                                         adjustContainerHeights()
+                                        
                                     }
                                 }
                             })
                             .catch(error => console.error('Error:', error));
                             adjustContainerHeights()
+                            document.getElementById('loadingSpinner').style.display = 'block';
                     
                 }
                 adjustContainerHeights()
