@@ -213,7 +213,7 @@
                         <button type="button" class="custom-submit-btn" onclick="clearForm_standard()">CLEAR</button>
                 
                         <div id="loadingSpinner" class="spinner-border" role="status"
-                            style="width: 2.5rem; height: 2.5rem; margin-left: 5%; color: #156ea6; display: block;">
+                            style="width: 2.5rem; height: 2.5rem; margin-left: 5%; color: #156ea6; display: none;">
                             <span class="sr-only">Loading...</span>
                         </div>
 
@@ -452,7 +452,7 @@
                     <button type="button" class="custom-submit-btn" style="margin-right: 1.5%;" onclick="predictAndShowResults_Non_Standard()">PREDICT</button>
                     <button type="button" class="custom-submit-btn" onclick="clearForm_non_standard()">CLEAR</button>
                     <div class="spinner-border" role="status"
-                        style="width: 2.5rem; height: 2.5rem; margin-left: 5%; color: #156ea6; display: block;">
+                        style="width: 2.5rem; height: 2.5rem; margin-left: 5%; color: #156ea6; display: none;">
                         <span class="sr-only">Loading...</span>
                     </div>
                 </div>
@@ -1017,7 +1017,7 @@
                                 return response.json();
                             })
                             .then(results => {
-                                document.getElementById('loadingSpinner').style.display = 'block';
+                                document.getElementById('loadingSpinner').style.display = 'none';
                                 if (results.error) {
                                     // Display the error message
                                     showNotification_non(results.error);
@@ -1077,7 +1077,7 @@
                             })
                             .catch(error => console.error('Error:', error));
                             adjustContainerHeights()
-                            document.getElementById('loadingSpinner').style.display = 'block';
+                            document.getElementById('loadingSpinner').style.display = 'none';
                     
                 }
                 adjustContainerHeights()
