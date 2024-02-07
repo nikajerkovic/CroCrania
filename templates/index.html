@@ -904,15 +904,16 @@
         });
 
 
-        function predictAndShowResults_Standard() {
+       function predictAndShowResults_Standard() {
                 // Change this line
+                
                 var notEmpty_std = check_empty_std();
+
                 // Change this line
                 if (notEmpty_std) {
+                    document.getElementById('loadingSpinner_std').style.display = 'block';
                     var form = document.getElementById('standardPredictionForm');
                     var formData = new FormData(form);
-
-                    document.getElementById('loadingSpinner').style.display = 'block';
 
                     fetch('/predict', {
                         method: 'POST',
@@ -926,7 +927,6 @@
                         })
                         .then(results => {
                             // Check if there's an error in the response
-                            document.getElementById('loadingSpinner').style.display = 'none';
                             if (results.error) {
                                 // Display the error message
                                 showNotification(results.error);
@@ -937,6 +937,8 @@
                                     notificationDiv.style.display = 'none'; // Show the notification
 
                                     var predictionResults = document.getElementById('predictionResults');
+
+                                    document.getElementById('loadingSpinner_std').style.display = 'none';
 
                                     if (predictionResults && Array.isArray(results) && results.length > 0) {
                                         var resultHtml = '<div class="form-column"><label style="font-size: 1.2rem; margin-bottom: 1rem; margin-top: 2rem;">Prediction Results</label>';
@@ -980,6 +982,8 @@
                                             resultsDiv.scrollIntoView({ behavior: 'smooth' });
                                         }
 
+                                         document.getElementById('loadingSpinner_std').style.display = 'none';
+
                                         
                                     } else {
                                         console.error('Error: Unexpected response format');
@@ -989,7 +993,7 @@
                         })
                         .catch(error => console.error('Error:', error));
                         adjustContainerHeights()
-                       document.getElementById('loadingSpinner').style.display = 'none';
+                       document.getElementById('loadingSpinner_std').style.display = 'none';
                 }
                 adjustContainerHeights()
                 
@@ -1000,11 +1004,10 @@
                 var notEmpty= check_empty();
                 // Change this line
                 if(notEmpty){
-
+                        document.getElementById('loadingSpinner_nstd').style.display = 'block';
                         var form = document.getElementById('nonStandardPredictionForm');
                         var formData = new FormData(form);
 
-                        document.getElementById('loadingSpinner').style.display = 'block';
 
                         fetch('/predict_non_standard', {
                             method: 'POST',
@@ -1017,7 +1020,6 @@
                                 return response.json();
                             })
                             .then(results => {
-                                document.getElementById('loadingSpinner').style.display = 'none';
                                 if (results.error) {
                                     // Display the error message
                                     showNotification_non(results.error);
@@ -1027,6 +1029,7 @@
                                     notificationDiv.style.display = 'none'; //
 
                                     var predictionResults = document.getElementById('predictionResultsNonStandard');
+                                    document.getElementById('loadingSpinner_nstd').style.display = 'block';
 
                                     if (predictionResults && Array.isArray(results) && results.length > 0) {
                                         var resultHtml = '<div class="form-column"><label style="font-size: 1.2rem; margin-bottom: 1rem; margin-top: 2rem;">Prediction Results</label>';
@@ -1067,6 +1070,8 @@
                                         if (resultsDiv) {
                                             resultsDiv.scrollIntoView({ behavior: 'smooth' });
                                         }
+
+                                        document.getElementById('loadingSpinner_nstd').style.display = 'none';
                                     
                                     } else {
                                         console.error('Error: Unexpected response format');
@@ -1077,11 +1082,12 @@
                             })
                             .catch(error => console.error('Error:', error));
                             adjustContainerHeights()
-                            document.getElementById('loadingSpinner').style.display = 'none';
+                            document.getElementById('loadingSpinner_nstd').style.display = 'block';
                     
                 }
                 adjustContainerHeights()
             }
+
 
             function clearForm_standard(){
                 document.querySelectorAll('.form-control, .form-control_3').forEach(input => {
