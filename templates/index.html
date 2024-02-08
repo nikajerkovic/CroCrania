@@ -939,7 +939,7 @@
                                     document.getElementById('loadingSpinner_std').style.display = 'none';
 
                                     if (predictionResults && Array.isArray(results) && results.length > 0) {
-                                        var resultHtml = '<div class="form-column"><label style="font-size: 1.2rem; margin-bottom: 1rem; margin-top: 2rem;">Prediction Results</label>';
+                                        var resultHtml = '<div class="form-column"><label class="label_titles_1"">Prediction Results</label>';
 
                                             
 
@@ -1030,7 +1030,7 @@
                                     document.getElementById('loadingSpinner_nstd').style.display = 'block';
 
                                     if (predictionResults && Array.isArray(results) && results.length > 0) {
-                                        var resultHtml = '<div class="form-column"><label style="font-size: 1.2rem; margin-bottom: 1rem; margin-top: 2rem;">Prediction Results</label>';
+                                        var resultHtml = '<div class="form-column"><label class="label_titles_1"">Prediction Results</label>';
 
                                             resultHtml += '<table class="table" id="resultsTable"><thead><tr>';
                                             var columns = ['ID', 'Filename', 'Female Probability', 'Male Probability', 'Prediction'];
