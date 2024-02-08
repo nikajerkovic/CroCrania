@@ -382,6 +382,12 @@ input[type="file"]::file-selector-button {
   cursor: pointer;
 }
 
+input[type="file"]::file-selector-button {
+  width: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
 .template-btn,
 .downloadButton {
   background-color: #156ea6;
@@ -544,9 +550,12 @@ option:checked {
 
   .template-btn,
   .template3-btn,
-  input[type="file"]::file-selector-button,
   .downloadButton {
     width: 100px;
+    font-size: 12px !important;
+  }
+
+  input[type="file"]::file-selector-button {
     font-size: 12px !important;
   }
 
@@ -642,7 +651,6 @@ option:checked {
   }
   .template-btn,
   .template3-btn,
-  input[type="file"]::file-selector-button,
   .downloadButton {
     width: 100px;
   }
@@ -673,9 +681,12 @@ option:checked {
   }
 
   .template-btn,
-  .template3-btn,
-  input[type="file"]::file-selector-button {
+  .template3-btn {
     width: 120px;
+    font-size: 14px;
+  }
+
+  input[type="file"]::file-selector-button {
     font-size: 14px;
   }
 
@@ -737,10 +748,13 @@ option:checked {
 @media only screen and (max-width: 496px) {
   .template-btn,
   .template3-btn,
-  input[type="file"]::file-selector-button,
   .downloadButton {
-    width: 90px;
-    font-size: 12px;
+    width: 100px;
+    font-size: 12px !important;
+  }
+
+  input[type="file"]::file-selector-button {
+    font-size: 12px !important;
   }
 
   .button-container {
@@ -798,7 +812,12 @@ option:checked {
     transform: none;
     width: 90px;
     margin-top: 10px;
-    font-size: 12px;
+    font-size: 12px !important;
+  }
+
+  .template-btn,
+  .template3-btn {
+    width: 100px;
   }
 
   select {
@@ -807,7 +826,7 @@ option:checked {
   }
 }
 
-@media only screen and (max-width: 361px) {
+@media only screen and (max-width: 383px) {
   #downloadExcelButton2 {
     margin-top: 3%;
   }
@@ -846,5 +865,27 @@ option:checked {
 
   .button-container_2 {
     padding-left: 5%;
+  }
+
+  @media only screen and (min-width: 3075px) {
+    .intro_container {
+      width: 20%;
+    }
+
+    .button-container {
+      width: 80%;
+    }
+
+    .form_container {
+      width: 80%;
+    }
+
+    .container {
+      padding-left: 0 !important;
+    }
+
+    .button-container_2 {
+      padding-left: 0;
+    }
   }
 }
