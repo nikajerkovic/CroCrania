@@ -839,9 +839,16 @@ option:checked {
   }
 }
 
-@media only screen and (min-width: 1629px) {
+@media only screen and (min-width: 1356px) {
   body {
     background-color: white !important;
+  }
+}
+
+@media only screen and (min-width: 1629px) {
+  body {
+    padding-left: 3%;
+    padding-right: 3%;
   }
 
   .logo {
@@ -849,7 +856,7 @@ option:checked {
   }
 
   .description {
-    padding: 1% 15%;
+    padding: 1% 12%;
   }
 
   .title {
@@ -859,33 +866,69 @@ option:checked {
   .container {
     margin-left: 0 !important;
     margin-right: 0 !important;
-    padding-left: 5% !important;
+    padding-left: 1% !important;
     padding-right: 0 !important;
   }
 
   .button-container_2 {
-    padding-left: 5%;
+    padding-left: 1%;
   }
 
-  @media only screen and (min-width: 3075px) {
+  @media only screen and (min-width: 1740px) {
+    body {
+      padding-left: 5%;
+      padding-right: 5%;
+    }
+  }
+
+  @media only screen and (min-width: 1830px) {
+    body {
+      padding-left: 6%;
+    }
+  }
+
+  @media only screen and (min-width: 1930px) {
+    body {
+      padding-left: 10%;
+      padding-right: 10%;
+    }
+
+    .intro_container {
+      width: 25%;
+    }
+  }
+
+  @media only screen and (min-width: 2129px) {
+    body {
+      padding-left: 13%;
+      padding-right: 13%;
+    }
+
+    .container {
+      padding-left: 2% !important;
+    }
+
+    .button-container_2 {
+      padding-left: 2%;
+    }
+  }
+
+  @media only screen and (min-width: 2509px) {
+    body {
+      padding-left: 20%;
+      padding-right: 20%;
+    }
+
     .intro_container {
       width: 20%;
     }
 
-    .button-container {
-      width: 80%;
-    }
-
-    .form_container {
-      width: 80%;
-    }
-
     .container {
-      padding-left: 0 !important;
+      padding-left: 1% !important;
     }
 
     .button-container_2 {
-      padding-left: 0;
+      padding-left: 1%;
     }
   }
 }
